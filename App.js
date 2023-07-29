@@ -1,20 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import home from './screens/home'
+import ImageUploader from './screens/UploadImg'
 
 export default function App() {
+
+  const Stack = createStackNavigator();
+
+  function MyStack() {
+    return (
+      <Stack.Navigator>
+        <Stack.Screen 
+        name="home" 
+        component={home}
+        options= {{
+          title: "DATOS",
+          headerTitleAlign: "center",
+          headerStyle: {backgroundColor:"#1B22F8"},
+          headerTintColor: "#FFFFFF"
+        }} />
+        <Stack.Screen 
+        name="UploadImg" 
+        component={ImageUploader}
+        options= {{
+          title: "IMAGEN",
+          headerTitleAlign: "center",
+          headerStyle: {backgroundColor:"#1B22F8"},
+          headerTintColor: "#FFFFFF"
+        }}/>
+      </Stack.Navigator>
+    );
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+   <NavigationContainer>
+   <MyStack/>
+   </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
